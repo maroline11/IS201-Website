@@ -1,0 +1,161 @@
+<!--
+Mary Olson 
+Section 008 
+IS 201
+-->     
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise!</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body id="top">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">Resume</a>
+        <a href="post.html">Portfolio</a>
+        <a href="scratch.html">Interests</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <h1>Just for Fun :)</h1>
+
+        <br>
+        <br>
+
+        <!-- VIDEO SECTION -->
+        <div class="video">
+            <iframe 
+                src="https://www.youtube.com/embed/5_EVHeNEIJY"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+
+            <img src="./assets/img/singinintherain.jpeg" alt="Singing in the Rain movie still">
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <!-- FACTS -->
+        <h3 class="factsabt">I love movies and here are <br>a few of my favorites!</h3>
+
+        <div class="facts">
+            <ul>
+                <li>Singin' in the Rain (isn't it obvious?)</li>
+                <li>Pride & Prejudice</li>
+                <li>You've Got Mail</li>
+                <li>Sabrina</li>
+                <li>Inception</li>
+                <li>The Fugitive</li>
+                <li>Knives Out</li>
+            </ul>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <!-- TABLEAU -->
+        <div class='tableauPlaceholder' id='viz1776291797166' style='position: relative'>
+            <noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bi&#47;BiggestMovieFranchises&#47;BiggestMovieFranchises&#47;1_rss.png' style='border: none' />
+            </a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='' />
+            <param name='name' value='BiggestMovieFranchises&#47;BiggestMovieFranchises' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bi&#47;BiggestMovieFranchises&#47;BiggestMovieFranchises&#47;1.png' /> 
+            <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' /><param name='language' value='en-US' /></object>
+        </div>
+
+        <!-- MOVIE APP -->
+        <div class="movie-app">
+
+            <h2>🎬 Movie Success Predictor</h2>
+
+            <input 
+                type="text" 
+                id="movieName" 
+                placeholder="Enter your movie title"
+                onkeypress="if(event.key === 'Enter') generateMovieStats()"
+            >
+
+            <button onclick="generateMovieStats()">Predict Success</button>
+
+            <div id="result"></div>
+
+        </div>
+
+        <!-- BACK TO TOP -->
+        <a href="#top" class="top-link">Back to top</a>
+
+    </div>
+
+    <!-- TABLEAU SCRIPT -->
+    <script>
+        var divElement = document.getElementById('viz1776291797166');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+
+    <!-- MOVIE APP SCRIPT -->
+    <script>
+        function generateMovieStats() {
+            const name = document.getElementById("movieName").value;
+
+            if (name.trim() === "") {
+                document.getElementById("result").innerHTML = "Please enter a movie name!";
+                return;
+            }
+
+            const genres = [
+                "Action Blockbuster 💥",
+                "Romantic Comedy 💕",
+                "Indie Drama 🎭",
+                "Sci-Fi Epic 🚀",
+                "Horror Thriller 😱",
+                "Animated Family Film 🐭"
+            ];
+
+            const outcomes = [
+                "Certified Hit 🔥",
+                "Box Office Smash 💰",
+                "Surprise Success 🎉",
+                "Mixed Reviews 😐",
+                "Box Office Disaster 💀",
+                "Cult Classic 🎬"
+            ];
+
+            const genre = genres[Math.floor(Math.random() * genres.length)];
+            const outcome = outcomes[Math.floor(Math.random() * outcomes.length)];
+            const gross = Math.floor(Math.random() * 1500 + 50);
+            const rating = (Math.random() * 8 + 1).toFixed(1);
+
+            document.getElementById("result").innerHTML = `
+                <h3>${name}</h3>
+                <p><strong>Genre:</strong> ${genre}</p>
+                <p><strong>IMDb Rating:</strong> ⭐ ${rating}/10</p>
+                <p><strong>Box Office:</strong> $${gross.toLocaleString()} million</p>
+                <p><strong>Outcome:</strong> ${outcome}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>
